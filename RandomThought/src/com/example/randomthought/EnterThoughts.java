@@ -7,11 +7,13 @@ import java.util.Random;
 
 import com.example.randomthought.thoughtendpoint.Thoughtendpoint;
 import com.example.randomthought.thoughtendpoint.model.Thought;
+import com.google.android.gms.common.AccountPicker;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.jackson.JacksonFactory;
 
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -26,7 +28,10 @@ import android.view.View;
 import android.widget.EditText;
 
 public class EnterThoughts extends Activity {
-    private PendingIntent pendingIntent;
+  
+	private PendingIntent pendingIntent;
+    static final int REQUEST_CODE = 1;
+    String accountName = "";
 
 	
 	@Override
@@ -34,6 +39,11 @@ public class EnterThoughts extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.enter_thoughts);		
 		Log.d("debugN", "EnterThoughts activity");  
+		
+		  //Sign into google account
+	      Intent intent = AccountPicker.newChooseAccountIntent(null, null, new String[]{"com.google"},
+	    	         false, null, null, null, null);
+	      startActivityForResult(intent, REQUEST_CODE);
 		
 
 
@@ -91,12 +101,18 @@ public class EnterThoughts extends Activity {
       Thoughtendpoint endpoint = CloudEndpointUtils.updateBuilder(
       endpointBuilder).build();
       try {
+    	  //Link edittext in view
     	  EditText enterThoughtET = (EditText) findViewById(R.id.editTextEnterThought);
+    	  //Set thought variable to the edittext's value
     	  String thought = enterThoughtET.getText().toString();
+    	  //Create a thought and set it to the variable thought
           Thought thoughtToEnter = new Thought().setThought(thought);
-          String thoughtID = new Date().toString();
-          thoughtToEnter.setId(thoughtID);
-   
+          //Set accountName of thought
+          thoughtToEnter.setAccountName(accountName);
+          
+          String noteID = new Date().toString();
+          thoughtToEnter.setId(noteID);
+          
           Thought result = endpoint.insertThought(thoughtToEnter).execute();
       } catch (IOException e) {
         e.printStackTrace();
@@ -105,6 +121,13 @@ public class EnterThoughts extends Activity {
         }
     }
 	
+	 protected void onActivityResult(final int requestCode, final int resultCode,
+	         final Intent data) {
+	     if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+	         accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+	         Log.d("debugN", "Account name: " + accountName);
+	   }
+	 }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
