@@ -9,6 +9,7 @@ public class Thought {
 	  @Id
 	  private String id;
 	  private String thought;
+	  private String accountName;
 
 	  public String getId() {
 	  return id;
@@ -24,6 +25,14 @@ public class Thought {
 	  
 	  public void setThought(String thought) {
 	    this.thought = thought;
+	  }
+	  
+	  public String getAccountName() {
+		    return accountName;
+		  }
+	  
+	  public void setAccountName(String accountName) {
+	    this.accountName = thought;
 	  }
 
 }

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/vnzc0S8cxvjwQrpyjG1s4sXtAPQ\"",
+ "etag": "\"MKGA2miAJpVGF7yQTQhsoDXpye8/BjAcmzez3jjJnGyXpmbK2H1hL_8\"",
  "discoveryVersion": "v1",
  "id": "thoughtendpoint:v1",
  "name": "thoughtendpoint",
@@ -93,6 +93,9 @@
    "id": "Thought",
    "type": "object",
    "properties": {
+    "accountName": {
+     "type": "string"
+    },
     "id": {
      "type": "string"
     },

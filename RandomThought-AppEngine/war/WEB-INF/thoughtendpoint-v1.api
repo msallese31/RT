@@ -43,6 +43,27 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "thoughtendpoint.removeThought" : {
+      "path" : "thought/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.randomthought.ThoughtEndpoint.removeThought",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "thoughtendpoint.getThought" : {
       "path" : "thought/{id}",
       "httpMethod" : "GET",
@@ -89,27 +110,6 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "thoughtendpoint.removeThought" : {
-      "path" : "thought/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.example.randomthought.ThoughtEndpoint.removeThought",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
     "thoughtendpoint.insertThought" : {
       "path" : "thought",
       "httpMethod" : "POST",
@@ -137,6 +137,9 @@
             "type" : "string"
           },
           "thought" : {
+            "type" : "string"
+          },
+          "accountName" : {
             "type" : "string"
           }
         }
@@ -166,6 +169,8 @@
           "$ref" : "Thought"
         }
       },
+      "com.example.randomthought.ThoughtEndpoint.removeThought" : {
+      },
       "com.example.randomthought.ThoughtEndpoint.getThought" : {
         "response" : {
           "$ref" : "Thought"
@@ -175,8 +180,6 @@
         "response" : {
           "$ref" : "CollectionResponse_Thought"
         }
-      },
-      "com.example.randomthought.ThoughtEndpoint.removeThought" : {
       },
       "com.example.randomthought.ThoughtEndpoint.insertThought" : {
         "request" : {
