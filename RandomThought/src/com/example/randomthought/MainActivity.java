@@ -18,10 +18,10 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);		
-		Log.d("debugN", "Mainassssssssssss activity");  
+		setContentView(R.layout.activity_main);	
+		
+		  Log.d("debugN", "Main activity");  
 
-		   // Set the alarm to start at 8:30 a.m.
 	      Calendar calendar = Calendar.getInstance();
 	      calendar.setTimeInMillis(System.currentTimeMillis());
 	      
@@ -44,16 +44,13 @@ public class MainActivity extends Activity {
 	      calendar.set(Calendar.HOUR_OF_DAY, time.hour);
 	      calendar.set(Calendar.MINUTE, time.minute);
 		
+	      //Create intent to call the question reciever class
 	      Intent myIntent = new Intent(MainActivity.this, QuestionsReceiver.class);
 	      pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent,0);
 	     
+	      //Set time for intent to be called
 	      Log.d("debugN", "Calling reciever");
 	      AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-	      
-	      //Long time = new GregorianCalendar().getTimeInMillis()+10000;
-	      
-	      // setRepeating() lets you specify a precise custom interval--in this case,
-	      // 20 minutes.
 	      alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
 		
 	}

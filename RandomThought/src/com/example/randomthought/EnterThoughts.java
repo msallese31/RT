@@ -33,32 +33,36 @@ public class EnterThoughts extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.enter_thoughts);		
-		Log.d("debugN", "Mainassssssssssss activity");  
+		Log.d("debugN", "EnterThoughts activity");  
 		
 
 
-		   // Set the alarm to start at 8:30 a.m.
+		   // Initialize the calendar
 	      Calendar calendar = Calendar.getInstance();
+	      //Not sure if this line is needed --- will test in future
 	      calendar.setTimeInMillis(System.currentTimeMillis());
 	      
+	      //Get the current time which is used to generate the random time
 	      Time time = new Time();
 	      time.setToNow();
 	      
+	      	//Get the random hour
 			Random r = new Random();
 			int randHour = r.nextInt((time.hour + 3) - time.hour) + time.hour;
+			
+			//If the hour is the same as the current hour, get a new random hour
 			while (randHour == time.hour)
 			{
 				randHour = r.nextInt((time.hour + 2) - time.hour) + time.hour;
 			}
 			
-				int randMinutes = r.nextInt(60 - 1) + 1;
+		  //Get the random minutes between 0-59
+		  int randMinutes = r.nextInt(60 - 1) + 1;
 
-
-			
-			Log.d("debugN", "Next alarm time: " + randHour + ":" + randMinutes);
-	      
-	      calendar.set(Calendar.HOUR_OF_DAY, randHour);
-	      calendar.set(Calendar.MINUTE, randMinutes);
+		  //Set the next alarm
+		  Log.d("debugN", "Next alarm time: " + randHour + ":" + randMinutes);
+	      calendar.set(Calendar.HOUR_OF_DAY, 10);
+	      calendar.set(Calendar.MINUTE, time.minute + 1);
 		
 	      Intent myIntent = new Intent(EnterThoughts.this, QuestionsReceiver.class);
 	      pendingIntent = PendingIntent.getBroadcast(EnterThoughts.this, 0, myIntent,0);
@@ -66,16 +70,13 @@ public class EnterThoughts extends Activity {
 	      Log.d("debugN", "Calling reciever");
 	      AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 	      
-	      //Long time = new GregorianCalendar().getTimeInMillis()+10000;
-	      
-	      // setRepeating() lets you specify a precise custom interval--in this case,
-	      // 20 minutes.
 	      alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
 		
 	}
 	
 	public void saveData(View view) {
 		new EndpointsTask().execute(getApplicationContext());
+		finish();
 	 }
 	
 	public class EndpointsTask extends AsyncTask<Context, Integer, Long> {
