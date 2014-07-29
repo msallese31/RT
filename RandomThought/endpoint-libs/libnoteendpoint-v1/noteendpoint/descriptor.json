@@ -1,13 +1,13 @@
 {
   "files": [
     {
-      "downloadUrl": "/downloads/noteendpoint/v1/20140725194801/java/1.16.0-rc/example.com-noteendpoint-v1-20140725194801-java-1.16.0-rc-sources.jar", 
-      "path": "example.com-noteendpoint-v1-20140725194801-java-1.16.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/noteendpoint/v1/20140729012750/java/1.16.0-rc/example.com-noteendpoint-v1-20140729012750-java-1.16.0-rc-sources.jar", 
+      "path": "example.com-noteendpoint-v1-20140729012750-java-1.16.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2014-07-25 19:48"
+      "timestamp": "2014-07-29 01:27"
     }, 
     {
-      "path": "example.com-noteendpoint-v1-20140725194801-java-1.16.0-rc.jar.properties", 
+      "path": "example.com-noteendpoint-v1-20140729012750-java-1.16.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
@@ -702,5 +702,5 @@
   "packagePath": "randomthought", 
   "language_version": "1.16.0-rc", 
   "id": "noteendpoint:v1", 
-  "revision": 20140725194801
+  "revision": 20140729012750
 }
