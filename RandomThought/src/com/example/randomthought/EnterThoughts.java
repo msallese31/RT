@@ -1,6 +1,8 @@
 package com.example.randomthought;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -110,8 +112,10 @@ public class EnterThoughts extends Activity {
           //Set accountName of thought
           thoughtToEnter.setAccountName(accountName);
           
-          String noteID = new Date().toString();
-          thoughtToEnter.setId(noteID);
+          DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+          Date dateForID = new Date();
+          String IDDate = dateFormat.format(dateForID).toString();
+          thoughtToEnter.setId(IDDate);
           
           Thought result = endpoint.insertThought(thoughtToEnter).execute();
       } catch (IOException e) {
