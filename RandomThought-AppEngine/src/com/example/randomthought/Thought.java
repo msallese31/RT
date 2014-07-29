@@ -32,7 +32,7 @@ public class Thought {
 		  }
 	  
 	  public void setAccountName(String accountName) {
-	    this.accountName = thought;
+	    this.accountName = accountName;
 	  }
 
 }

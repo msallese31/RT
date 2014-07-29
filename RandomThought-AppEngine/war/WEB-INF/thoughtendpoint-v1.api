@@ -64,27 +64,6 @@
         "body" : "empty"
       }
     },
-    "thoughtendpoint.getThought" : {
-      "path" : "thought/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.example.randomthought.ThoughtEndpoint.getThought",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "thoughtendpoint.listThought" : {
       "path" : "thought",
       "httpMethod" : "GET",
@@ -102,6 +81,27 @@
           "limit" : {
             "type" : "int32",
             "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "thoughtendpoint.getThought" : {
+      "path" : "thought/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.randomthought.ThoughtEndpoint.getThought",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
           }
         },
         "body" : "empty"
@@ -171,14 +171,14 @@
       },
       "com.example.randomthought.ThoughtEndpoint.removeThought" : {
       },
-      "com.example.randomthought.ThoughtEndpoint.getThought" : {
-        "response" : {
-          "$ref" : "Thought"
-        }
-      },
       "com.example.randomthought.ThoughtEndpoint.listThought" : {
         "response" : {
           "$ref" : "CollectionResponse_Thought"
+        }
+      },
+      "com.example.randomthought.ThoughtEndpoint.getThought" : {
+        "response" : {
+          "$ref" : "Thought"
         }
       },
       "com.example.randomthought.ThoughtEndpoint.insertThought" : {
